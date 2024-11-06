@@ -26,10 +26,14 @@
         
         <PackageReference Include="BCrypt.Net-Next" Version="4.0.3"/>
         
-        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0"/>
-        
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.2.0"/>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10"/>
         <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.2.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="IAM\Infrastructure\Tokens\JWB\Configuration\" />
+      <Folder Include="IAM\Infrastructure\Tokens\JWB\Services\" />
     </ItemGroup>
 
 </Project>
