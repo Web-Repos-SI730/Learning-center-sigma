@@ -8,6 +8,8 @@ namespace ACME.LearningCenterPlatform.API.IAM.Domain.Model.Repositories;
 
 public interface IUserRepository:IBaseRepository<User>
 {
-    Task<User?>findByUsername(GetUserByUsernameQuery query);
-    Task<User?>findUserById(GetUserByIdQuery query);
+    Task<User?> FindByUsernameAsync(string username);
+    
+    bool ExistsByUsername(string username);
+    
 }
