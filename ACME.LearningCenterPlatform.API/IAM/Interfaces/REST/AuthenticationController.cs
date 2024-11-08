@@ -8,7 +8,12 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace ACME.LearningCenterPlatform.API.IAM.Interfaces.REST;
 
-
+/// <summary>
+///  Represent the authentication controller.
+/// </summary>
+/// <param name="userCommandService">
+/// The <see cref="IUserCommandService"/> command service for users
+/// </param>
 [ApiController]
 [Route("api/v1/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
@@ -16,13 +21,13 @@ namespace ACME.LearningCenterPlatform.API.IAM.Interfaces.REST;
 
 public class AuthenticationController(IUserCommandService userCommandService) : ControllerBase
 {
+    
     [HttpPost("sign-in")]
     [SwaggerOperation(
         Summary = "Sign in the user",
         Description = "Sign in the user with the provided credentials",
         OperationId = "SignIn")]
     [SwaggerResponse(200, "The user is successfully signed in", typeof(AuthenticatedUserResource))]
-    [SwaggerResponse(400, "The provided credentials are invalid")]
     public async Task<IActionResult> SignIn([FromBody] SignInResource resource)
     {
         var signInCommand = SignInCommandFromResourceAssembler.ToCommandFromResource(resource);
@@ -33,6 +38,12 @@ public class AuthenticationController(IUserCommandService userCommandService) : 
         return Ok(authenticatedUserResource);
     }
 
+    [HttpPost("sign-up")]
+    [SwaggerOperation(
+        Summary = "Sign up the user",
+        Description = "Sign up the user with the provided credentials",
+        OperationId = "SignUp")]
+    [SwaggerResponse(StatusCodes.Status200OK, "The user was successfully signed up.")]
     public async Task<IActionResult> SignUp([FromBody] SignUpResource resource)
     {
         var signUpCommand = SignUpCommandFromResourceAssembler.ToCommandFromResource(resource);
